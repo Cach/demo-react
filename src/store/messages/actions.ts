@@ -39,6 +39,10 @@ export const messageFormSuccess = createAction<void, MessagesStateTypes.formSucc
   MessagesStateTypes.formSuccess
 );
 
+export const messagesFormFailure = createAction<void, MessagesStateTypes.formFailure>(
+  MessagesStateTypes.formFailure
+);
+
 export const fetchMessages: ActionCreator<ThunkResult<void>> =
   () => async (dispatch: Dispatch<RootState>) => {
     dispatch(messagesRequest());
@@ -64,11 +68,19 @@ export const sendFormRequest: ActionCreator<ThunkResult<void>> =
 
     await timeout(1000);
 
-    const message: IMessage = await addMessage(data);
+    try {
+      const message: IMessage = await addMessage(data);
 
-    dispatch(messageAdd(message));
+      dispatch(messageAdd(message));
 
-    toast.success('Message was successfully added');
+      toast.success('Message was successfully added');
+    } catch {
+      dispatch(messagesFormFailure());
+
+      toast.success('Some problems with adding a new message');
+
+      return;
+    }
 
     dispatch(messageFormClose());
     dispatch(messageFormSuccess());

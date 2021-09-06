@@ -10,4 +10,9 @@ export const addMessage = (data: IMessageForm): Promise<IMessage> =>
     id: randomInt(1e5, 9e5),
     message: data.message,
     date: new Date().toString(),
+    user: {
+      id: 1,
+      firstName: 'John',
+      lastName: 'Doe',
+    },
   });

@@ -8,6 +8,7 @@ import {
   messageFormRequest,
   messageFormSuccess,
   messagesFailure,
+  messagesFormFailure,
   messagesRequest,
   messagesSet,
   messagesSuccess,
@@ -21,6 +22,30 @@ const initialState: MessagesState = {
     isOpened: false,
     isSending: false,
   },
+};
+
+const changeFormSending = (state: MessagesState, isSending: boolean): MessagesState => {
+  const { form, ...otherState } = state;
+
+  return {
+    ...otherState,
+    form: {
+      ...form,
+      isSending,
+    },
+  };
+};
+
+const changeFormOpened = (state: MessagesState, isOpened: boolean): MessagesState => {
+  const { form, ...otherState } = state;
+
+  return {
+    ...otherState,
+    form: {
+      ...form,
+      isOpened,
+    },
+  };
 };
 
 export const messagesReducer: Reducer<MessagesState> = createReducer(initialState, {
@@ -48,48 +73,12 @@ export const messagesReducer: Reducer<MessagesState> = createReducer(initialStat
     ...state,
     isLoading: false,
   }),
-  [messageFormOpen.type]: (state: MessagesState): MessagesState => {
-    const { form, ...otherState } = state;
-
-    return {
-      ...otherState,
-      form: {
-        ...form,
-        isOpened: true,
-      },
-    };
-  },
-  [messageFormClose.type]: (state: MessagesState): MessagesState => {
-    const { form, ...otherState } = state;
-
-    return {
-      ...otherState,
-      form: {
-        ...form,
-        isOpened: false,
-      },
-    };
-  },
-  [messageFormRequest.type]: (state: MessagesState): MessagesState => {
-    const { form, ...otherState } = state;
-
-    return {
-      ...otherState,
-      form: {
-        ...form,
-        isSending: true,
-      },
-    };
-  },
-  [messageFormSuccess.type]: (state: MessagesState): MessagesState => {
-    const { form, ...otherState } = state;
-
-    return {
-      ...otherState,
-      form: {
-        ...form,
-        isSending: false,
-      },
-    };
-  },
+  [messageFormOpen.type]: (state: MessagesState): MessagesState => changeFormOpened(state, true),
+  [messageFormClose.type]: (state: MessagesState): MessagesState => changeFormOpened(state, false),
+  [messageFormRequest.type]: (state: MessagesState): MessagesState =>
+    changeFormSending(state, true),
+  [messageFormSuccess.type]: (state: MessagesState): MessagesState =>
+    changeFormSending(state, false),
+  [messagesFormFailure.type]: (state: MessagesState): MessagesState =>
+    changeFormSending(state, false),
 });

@@ -68,6 +68,10 @@ export interface MessageFormSuccessStateAction {
   type: MessagesStateTypes.formSuccess;
 }
 
+export interface MessageFormFailureStateAction {
+  type: MessagesStateTypes.formFailure;
+}
+
 export type MessagesActionTypes =
   | MessagesLoadingStateAction
   | MessagesRequestStateAction
@@ -78,4 +82,5 @@ export type MessagesActionTypes =
   | MessageFormOpenStateAction
   | MessageFormCloseStateAction
   | MessageFormRequestStateAction
-  | MessageFormSuccessStateAction;
+  | MessageFormSuccessStateAction
+  | MessageFormFailureStateAction;

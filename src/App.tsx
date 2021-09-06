@@ -18,7 +18,7 @@ const App = () => (
         <Messages />
       </main>
 
-      <ToastContainer />
+      <ToastContainer autoClose={3000} pauseOnFocusLoss={false} />
     </Container>
   </ThemeProvider>
 );
