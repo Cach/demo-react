@@ -1,8 +1,8 @@
 import { ActionCreator, createAction } from '@reduxjs/toolkit';
 import { Dispatch } from 'react';
 import { toast } from 'react-toastify';
-import { getMessages } from '../../api/messages';
-import { IMessage } from '../../model/message.interface';
+import { addMessage, getMessages } from '../../api/messages';
+import { IMessage, IMessageForm } from '../../model/message.interface';
 import { timeout } from '../../utils/timeout';
 import { RootState, ThunkResult } from '../types';
 import { MessagesStateTypes } from './types';
@@ -13,7 +13,7 @@ export const messagesRequest = createAction<void, MessagesStateTypes.request>(
 
 export const messagesSet = createAction<IMessage[], MessagesStateTypes.set>(MessagesStateTypes.set);
 
-export const messagesAdd = createAction<IMessage, MessagesStateTypes.add>(MessagesStateTypes.add);
+export const messageAdd = createAction<IMessage, MessagesStateTypes.add>(MessagesStateTypes.add);
 
 export const messagesSuccess = createAction<void, MessagesStateTypes.success>(
   MessagesStateTypes.success
@@ -33,6 +33,10 @@ export const messageFormClose = createAction<void, MessagesStateTypes.formClose>
 
 export const messageFormRequest = createAction<void, MessagesStateTypes.formRequest>(
   MessagesStateTypes.formRequest
+);
+
+export const messageFormSuccess = createAction<void, MessagesStateTypes.formSuccess>(
+  MessagesStateTypes.formSuccess
 );
 
 export const fetchMessages: ActionCreator<ThunkResult<void>> =
@@ -55,6 +59,17 @@ export const fetchMessages: ActionCreator<ThunkResult<void>> =
   };
 
 export const sendFormRequest: ActionCreator<ThunkResult<void>> =
-  () => async (dispatch: Dispatch<RootState>) => {
+  (data: IMessageForm) => async (dispatch: Dispatch<RootState>) => {
     dispatch(messageFormRequest());
+
+    await timeout(1000);
+
+    const message: IMessage = await addMessage(data);
+
+    dispatch(messageAdd(message));
+
+    toast.success('Message was successfully added');
+
+    dispatch(messageFormClose());
+    dispatch(messageFormSuccess());
   };

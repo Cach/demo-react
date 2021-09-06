@@ -2,10 +2,11 @@ import { createReducer, PayloadAction } from '@reduxjs/toolkit';
 import { Reducer } from 'redux';
 import { IMessage } from '../../model/message.interface';
 import {
+  messageAdd,
   messageFormClose,
   messageFormOpen,
   messageFormRequest,
-  messagesAdd,
+  messageFormSuccess,
   messagesFailure,
   messagesRequest,
   messagesSet,
@@ -31,7 +32,7 @@ export const messagesReducer: Reducer<MessagesState> = createReducer(initialStat
     ...state,
     data: action.payload,
   }),
-  [messagesAdd.type]: (state: MessagesState, action: PayloadAction<IMessage>): MessagesState => {
+  [messageAdd.type]: (state: MessagesState, action: PayloadAction<IMessage>): MessagesState => {
     const { data: messages, ...otherState } = state;
 
     return {
@@ -77,6 +78,17 @@ export const messagesReducer: Reducer<MessagesState> = createReducer(initialStat
       form: {
         ...form,
         isSending: true,
+      },
+    };
+  },
+  [messageFormSuccess.type]: (state: MessagesState): MessagesState => {
+    const { form, ...otherState } = state;
+
+    return {
+      ...otherState,
+      form: {
+        ...form,
+        isSending: false,
       },
     };
   },

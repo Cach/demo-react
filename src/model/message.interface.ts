@@ -3,3 +3,7 @@ export interface IMessage {
   message: string;
   date: string;
 }
+
+export interface IMessageForm {
+  message: string;
+}

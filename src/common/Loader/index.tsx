@@ -1,7 +1,7 @@
 import { CircularProgress } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import React, { FC, memo } from 'react';
 import PropTypes from 'prop-types';
+import React, { FC, memo } from 'react';
 
 const DEFAULT_SIZE = 25;
 
