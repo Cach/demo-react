@@ -5,7 +5,7 @@ import { addMessage, getMessages } from '../../api/messages';
 import { IMessage, IMessageForm } from '../../model/message.interface';
 import { timeout } from '../../utils/timeout';
 import { RootState, ThunkResult } from '../types';
-import { MessagesStateTypes } from './types';
+import { IMessagesFiltersState, MessagesStateTypes } from './types';
 
 export const messagesRequest = createAction<void, MessagesStateTypes.request>(
   MessagesStateTypes.request
@@ -42,6 +42,11 @@ export const messageFormSuccess = createAction<void, MessagesStateTypes.formSucc
 export const messagesFormFailure = createAction<void, MessagesStateTypes.formFailure>(
   MessagesStateTypes.formFailure
 );
+
+export const messagesSetFilters = createAction<
+  IMessagesFiltersState,
+  MessagesStateTypes.setFilters
+>(MessagesStateTypes.setFilters);
 
 export const fetchMessages: ActionCreator<ThunkResult<void>> =
   () => async (dispatch: Dispatch<RootState>) => {

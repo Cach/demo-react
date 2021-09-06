@@ -43,7 +43,7 @@ const Messages: FC = memo((): JSX.Element => {
     <Box className={classes.root}>
       <MessagesFilters />
       <List>{renderMessagesList}</List>
-      {isLoading && <Loader />}
+      {isLoading && <Loader size={48} />}
       <MessageFormDialog />
     </Box>
   );

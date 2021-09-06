@@ -1,5 +1,22 @@
 import { IMessage } from '../../model/message.interface';
 
+export interface IMessageFormState {
+  isOpened: boolean;
+  isSending: boolean;
+}
+
+export interface IMessagesFiltersState {
+  date: Date | null;
+  user: string;
+}
+
+export interface IMessagesState {
+  isLoading: boolean;
+  data: IMessage[];
+  form: IMessageFormState;
+  filters: IMessagesFiltersState;
+}
+
 export enum MessagesStateTypes {
   loading = '@@MESSAGES/LOADING_STATE',
   request = '@@MESSAGES/REQUEST',
@@ -12,17 +29,7 @@ export enum MessagesStateTypes {
   formRequest = '@@MESSAGES/FORM_REQUEST',
   formSuccess = '@@MESSAGES/FORM_SUCCESS',
   formFailure = '@@MESSAGES/FORM_FAILURE',
-}
-
-export interface MessageFormState {
-  isOpened: boolean;
-  isSending: boolean;
-}
-
-export interface MessagesState {
-  isLoading: boolean;
-  data: IMessage[];
-  form: MessageFormState;
+  setFilters = '@@MESSAGES/SET_FILTERS',
 }
 
 export interface MessagesLoadingStateAction {
@@ -72,6 +79,11 @@ export interface MessageFormFailureStateAction {
   type: MessagesStateTypes.formFailure;
 }
 
+export interface MessageSetFiltersStateAction {
+  type: MessagesStateTypes.setFilters;
+  payload: IMessagesFiltersState;
+}
+
 export type MessagesActionTypes =
   | MessagesLoadingStateAction
   | MessagesRequestStateAction
@@ -83,4 +95,5 @@ export type MessagesActionTypes =
   | MessageFormCloseStateAction
   | MessageFormRequestStateAction
   | MessageFormSuccessStateAction
-  | MessageFormFailureStateAction;
+  | MessageFormFailureStateAction
+  | MessageSetFiltersStateAction;

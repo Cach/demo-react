@@ -1,6 +1,7 @@
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import React, { FC, memo } from 'react';
+import MessagesFiltersForm from '../MessagesFiltersForm';
 
 const MessagesFilters: FC = memo(() => (
   <Accordion>
@@ -11,8 +12,9 @@ const MessagesFilters: FC = memo(() => (
     >
       <Typography>Filters</Typography>
     </AccordionSummary>
+
     <AccordionDetails>
-      <Typography>Filters should be here</Typography>
+      <MessagesFiltersForm />
     </AccordionDetails>
   </Accordion>
 ));
