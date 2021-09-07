@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, Grid, Stack, TextField } from '@material-ui/core';
+import { Box, Button, FormControl, Grid, TextField } from '@material-ui/core';
 import { DatePicker, LocalizationProvider } from '@material-ui/lab';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import React, {
@@ -12,6 +12,7 @@ import React, {
 } from 'react';
 import { useDispatch } from 'react-redux';
 import { Dispatch } from 'redux';
+import FormButtons from '../../../../common/FormButtons';
 import { messagesSetFilters } from '../../../../store/messages/actions';
 import { RootState } from '../../../../store/types';
 
@@ -50,16 +51,16 @@ const MessagesFiltersForm: FC = memo(() => {
     <Box component="form" noValidate autoComplete="off">
       <Grid container spacing={2}>
         <Grid item xs={6}>
-          <FormControl>
+          <FormControl fullWidth>
             <TextField label="User" variant="outlined" value={user} onChange={handleUserChange} />
           </FormControl>
         </Grid>
 
         <Grid item xs={6}>
-          <FormControl>
+          <FormControl fullWidth>
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <DatePicker
-                label="Input date"
+                label="Date of message"
                 value={date}
                 inputFormat="dd/MM/yyyy"
                 onChange={handleDateChange}
@@ -68,13 +69,15 @@ const MessagesFiltersForm: FC = memo(() => {
             </LocalizationProvider>
           </FormControl>
         </Grid>
-      </Grid>
 
-      <Stack spacing={2} direction="row" justifyContent="flex-end">
-        <Button onClick={handleReset} variant="outlined">
-          Reset
-        </Button>
-      </Stack>
+        <Grid item xs={12}>
+          <FormButtons>
+            <Button onClick={handleReset} variant="outlined">
+              Reset
+            </Button>
+          </FormButtons>
+        </Grid>
+      </Grid>
     </Box>
   );
 });

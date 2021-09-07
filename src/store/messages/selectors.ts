@@ -1,6 +1,6 @@
 import isSameDay from 'date-fns/isSameDay';
 import { IMessage } from '../../model/message.interface';
-import { isSubstring } from '../../utils/string';
+import { escape, isSubstring } from '../../utils/string';
 import { RootState } from '../types';
 import { IMessagesFiltersState } from './types';
 
@@ -18,7 +18,7 @@ const filterMessages = (messages: IMessage[], filters: IMessagesFiltersState): I
 
     const username = `${message.user.firstName} ${message.user.lastName}`;
 
-    return !user?.length || isSubstring(username, user);
+    return !user?.length || isSubstring(username, escape(user));
   });
 };
 

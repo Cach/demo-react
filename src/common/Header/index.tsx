@@ -1,6 +1,6 @@
 import { Toolbar, Typography } from '@material-ui/core';
 import React, { FC, memo } from 'react';
-import SendMessageButton from '../SendMessageButton';
+import NavLink from '../NavLink';
 
 const Header: FC = memo(
   (): JSX.Element => (
@@ -13,10 +13,8 @@ const Header: FC = memo(
         noWrap
         sx={{ flex: 1 }}
       >
-        Demo app
+        <NavLink url="/" label="Demo app" />
       </Typography>
-
-      <SendMessageButton />
     </Toolbar>
   )
 );

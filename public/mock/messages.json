@@ -66,7 +66,7 @@
     "user": {
       "id": 2,
       "firstName": "Bob",
-      "lastName": "Strem"
+      "lastName": "Stream"
     }
   },
   {
@@ -76,7 +76,7 @@
     "user": {
       "id": 2,
       "firstName": "Bob",
-      "lastName": "Strem"
+      "lastName": "Stream"
     }
   },
   {
@@ -86,7 +86,7 @@
     "user": {
       "id": 2,
       "firstName": "Bob",
-      "lastName": "Strem"
+      "lastName": "Stream"
     }
   },
   {
@@ -96,7 +96,7 @@
     "user": {
       "id": 2,
       "firstName": "Bob",
-      "lastName": "Strem"
+      "lastName": "Stream"
     }
   }
 ]

@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, Stack, TextField, Typography } from '@material-ui/core';
+import { Box, Button, FormControl, TextField, Typography } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import { LoadingButton } from '@material-ui/lab';
 import PropTypes from 'prop-types';
@@ -12,6 +12,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
+import FormButtons from '../../../../common/FormButtons';
 import { IMessageForm } from '../../../../model/message.interface';
 
 interface IProps {
@@ -82,7 +83,7 @@ const MessageForm: FC<IProps> = memo(({ isSending, handleSubmit, handleCancel })
         {renderMessageCounter}
       </FormControl>
 
-      <Stack spacing={2} direction="row" justifyContent="flex-end">
+      <FormButtons>
         <Button color="error" onClick={handleCancel} disabled={isSending} variant="outlined">
           Cancel
         </Button>
@@ -97,7 +98,7 @@ const MessageForm: FC<IProps> = memo(({ isSending, handleSubmit, handleCancel })
         >
           Send
         </LoadingButton>
-      </Stack>
+      </FormButtons>
     </Box>
   );
 });

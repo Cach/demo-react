@@ -29,7 +29,7 @@ FormDialog.propTypes = {
   description: PropTypes.string,
   isOpen: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 FormDialog.defaultProps = {

@@ -1,9 +1,10 @@
 import { Card, CardContent, CardHeader, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import format from 'date-fns/format';
-import PropTypes from 'prop-types';
 import React, { FC, memo, useMemo } from 'react';
+import NavLink from '../../../../common/NavLink';
 import { IMessage } from '../../../../model/message.interface';
+import { MessageType } from '../../types';
 
 interface IProps {
   message: IMessage;
@@ -19,7 +20,10 @@ const Message: FC<IProps> = memo((props: IProps): JSX.Element => {
   const classes = useStyles();
   const { message, date, user } = props.message;
 
-  const renderUser = useMemo(() => `${user.firstName} ${user.lastName}`, [user]);
+  const renderUser = useMemo(
+    () => <NavLink url={`/users/${user.id}`} label={`${user.firstName} ${user.lastName}`} />,
+    [user]
+  );
 
   const renderDate = useMemo(() => format(new Date(date), 'dd.MM.yyyy, HH:mm'), [date]);
 
@@ -36,16 +40,7 @@ const Message: FC<IProps> = memo((props: IProps): JSX.Element => {
 });
 
 Message.propTypes = {
-  message: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    message: PropTypes.string.isRequired,
-    date: PropTypes.string.isRequired,
-    user: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      firstName: PropTypes.string.isRequired,
-      lastName: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
+  message: MessageType.isRequired,
 };
 
 export default Message;

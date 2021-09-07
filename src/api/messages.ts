@@ -1,9 +1,9 @@
-import { MOCK_DATA_PATH } from '../config/constants';
+import { MOCK_MESSAGES_PATH } from '../config/constants';
 import { IMessage, IMessageForm } from '../model/message.interface';
 import { randomInt } from '../utils/random';
 
 export const getMessages = (): Promise<IMessage[]> =>
-  fetch(MOCK_DATA_PATH).then((response) => response.json());
+  fetch(MOCK_MESSAGES_PATH).then((response) => response.json());
 
 export const addMessage = (data: IMessageForm): Promise<IMessage> =>
   Promise.resolve({
@@ -16,3 +16,8 @@ export const addMessage = (data: IMessageForm): Promise<IMessage> =>
       lastName: 'Doe',
     },
   });
+
+export const getMessagesByUser = (id: number): Promise<IMessage[]> =>
+  fetch(MOCK_MESSAGES_PATH)
+    .then((response) => response.json())
+    .then((messages) => messages.filter((message: IMessage) => message.user.id === id));
