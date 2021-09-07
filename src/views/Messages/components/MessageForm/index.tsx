@@ -23,85 +23,87 @@ interface IProps {
 
 const MESSAGE_LIMIT = 200;
 
-const MessageForm: FC<IProps> = memo(({ isSending, handleSubmit, handleCancel }): JSX.Element => {
-  const [message, setMessage] = useState<string>('');
-  const [isValid, setIsValid] = useState<boolean>(false);
+const MessageForm: FC<IProps> = memo<IProps>(
+  ({ isSending, handleSubmit, handleCancel }): JSX.Element => {
+    const [message, setMessage] = useState<string>('');
+    const [isValid, setIsValid] = useState<boolean>(false);
 
-  useEffect(() => {
-    setIsValid(!!message.length);
-  }, [message]);
+    useEffect(() => {
+      setIsValid(!!message.length);
+    }, [message]);
 
-  const handleFormSubmit = useCallback(
-    (event) => {
-      event.preventDefault();
+    const handleFormSubmit = useCallback(
+      (event) => {
+        event.preventDefault();
 
-      handleSubmit({ message });
-    },
-    [handleSubmit, message]
-  );
+        handleSubmit({ message });
+      },
+      [handleSubmit, message]
+    );
 
-  const handleMessageChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    let { value } = event.target;
+    const handleMessageChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+      let { value } = event.target;
 
-    if (value.length > MESSAGE_LIMIT) {
-      value = value.slice(0, MESSAGE_LIMIT);
-    }
+      if (value.length > MESSAGE_LIMIT) {
+        value = value.slice(0, MESSAGE_LIMIT);
+      }
 
-    setMessage(value);
-  }, []);
+      setMessage(value);
+    }, []);
 
-  const handleMessageKeyDown = useCallback((event: KeyboardEvent<HTMLInputElement>) => {
-    const { value } = event.target as HTMLInputElement;
+    const handleMessageKeyDown = useCallback((event: KeyboardEvent<HTMLInputElement>) => {
+      const { value } = event.target as HTMLInputElement;
 
-    return value.length < MESSAGE_LIMIT;
-  }, []);
+      return value.length < MESSAGE_LIMIT;
+    }, []);
 
-  const renderMessageCounter = useMemo<JSX.Element>(
-    () => (
-      <Typography variant="caption" display="block" gutterBottom align="right">
-        {message.length}/{MESSAGE_LIMIT}
-      </Typography>
-    ),
-    [message]
-  );
+    const renderMessageCounter = useMemo<JSX.Element>(
+      () => (
+        <Typography variant="caption" display="block" gutterBottom align="right">
+          {message.length}/{MESSAGE_LIMIT}
+        </Typography>
+      ),
+      [message]
+    );
 
-  return (
-    <Box component="form" noValidate autoComplete="off" sx={{ mt: 1 }}>
-      <FormControl fullWidth sx={{ mb: 1 }}>
-        <TextField
-          id="message-field"
-          label="Message"
-          multiline
-          rows={5}
-          value={message}
-          sx={{ width: '100%' }}
-          disabled={isSending}
-          onChange={handleMessageChange}
-          onKeyDown={handleMessageKeyDown}
-        />
+    return (
+      <Box component="form" noValidate autoComplete="off" sx={{ mt: 1 }}>
+        <FormControl fullWidth sx={{ mb: 1 }}>
+          <TextField
+            id="message-field"
+            label="Message"
+            multiline
+            rows={5}
+            value={message}
+            sx={{ width: '100%' }}
+            disabled={isSending}
+            onChange={handleMessageChange}
+            onKeyDown={handleMessageKeyDown}
+          />
 
-        {renderMessageCounter}
-      </FormControl>
+          {renderMessageCounter}
+        </FormControl>
 
-      <FormButtons>
-        <Button color="error" onClick={handleCancel} disabled={isSending} variant="outlined">
-          Cancel
-        </Button>
+        <FormButtons>
+          <Button color="error" onClick={handleCancel} disabled={isSending} variant="outlined">
+            Cancel
+          </Button>
 
-        <LoadingButton
-          loading={isSending}
-          loadingPosition="start"
-          startIcon={<SendIcon />}
-          onClick={handleFormSubmit}
-          variant="outlined"
-          disabled={!isValid}
-        >
-          Send
-        </LoadingButton>
-      </FormButtons>
-    </Box>
-  );
-});
+          <LoadingButton
+            loading={isSending}
+            loadingPosition="start"
+            startIcon={<SendIcon />}
+            onClick={handleFormSubmit}
+            variant="outlined"
+            disabled={!isValid}
+          >
+            Send
+          </LoadingButton>
+        </FormButtons>
+      </Box>
+    );
+  }
+);
 
 MessageForm.propTypes = {
   isSending: PropTypes.bool.isRequired,

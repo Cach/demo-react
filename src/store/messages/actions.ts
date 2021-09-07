@@ -57,8 +57,7 @@ export const fetchMessages: ActionCreator<ThunkResult<void>> =
 
       const messages = await getMessages();
 
-      await dispatch(messagesSet(messages));
-
+      dispatch(messagesSet(messages));
       dispatch(messagesSuccess());
     } catch (error) {
       toast.error('Some problems with loading data. Please try again...');

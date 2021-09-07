@@ -27,7 +27,7 @@ export const fetchUser: ActionCreator<ThunkResult<void>> =
 
       const user = await getUser(id);
 
-      await dispatch(userSet(user));
+      dispatch(userSet(user));
     } catch {
       toast.error('User not found');
 

@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Loader: FC<IProps> = memo(({ size }: IProps): JSX.Element => {
+const Loader: FC<IProps> = memo<IProps>(({ size }): JSX.Element => {
   const classes = useStyles();
 
   return (

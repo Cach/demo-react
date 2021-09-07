@@ -8,8 +8,8 @@ interface IProps {
   handleClick: () => void;
 }
 
-const SendButton: FC<IProps> = memo(
-  ({ label, handleClick }: IProps): JSX.Element => (
+const SendButton: FC<IProps> = memo<IProps>(
+  ({ label, handleClick }): JSX.Element => (
     <Button variant="outlined" endIcon={<SendIcon />} onClick={handleClick}>
       {label}
     </Button>
