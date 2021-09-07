@@ -21,7 +21,7 @@ const User: FC = memo(() => {
 
   const isLoading = useSelector<RootState, boolean>(getUserLoading);
   const user = useSelector<RootState, IUser | null>(getUser);
-  const error = useSelector<RootState, string | null>(getUserError);
+  const error = useSelector<RootState, Error | null>(getUserError);
   const dispatch: Dispatch<RootState> = useDispatch<RootState>();
 
   useEffect(

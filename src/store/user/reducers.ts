@@ -32,7 +32,7 @@ export const userReducer: Reducer<IUserState> = createReducer(initialState, {
     ...state,
     isLoading: false,
   }),
-  [userFailure.type]: (state: IUserState, action: PayloadAction<string>): IUserState => ({
+  [userFailure.type]: (state: IUserState, action: PayloadAction<Error>): IUserState => ({
     ...state,
     isLoading: false,
     error: action.payload,

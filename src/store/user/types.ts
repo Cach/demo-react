@@ -5,7 +5,7 @@ export interface IUserState {
   isLoading: boolean;
   data: IUser | null;
   messages: IMessage[];
-  error: string | null;
+  error: Error | null;
 }
 
 export enum UserStateTypes {

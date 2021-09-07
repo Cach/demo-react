@@ -3,6 +3,7 @@ import { Dispatch } from 'react';
 import { toast } from 'react-toastify';
 import { getMessagesByUser } from '../../api/messages';
 import { getUser } from '../../api/users';
+import { NotFoundError } from '../../entity/not-found';
 import { IMessage } from '../../model/message.interface';
 import { IUser } from '../../model/user.interface';
 import { timeout } from '../../utils/timeout';
@@ -12,7 +13,7 @@ import { UserStateTypes } from './types';
 export const userRequest = createAction<void, UserStateTypes.request>(UserStateTypes.request);
 export const userSet = createAction<IUser, UserStateTypes.set>(UserStateTypes.set);
 export const userSuccess = createAction<void, UserStateTypes.success>(UserStateTypes.success);
-export const userFailure = createAction<string, UserStateTypes.failure>(UserStateTypes.failure);
+export const userFailure = createAction<Error, UserStateTypes.failure>(UserStateTypes.failure);
 export const userClear = createAction<void, UserStateTypes.clear>(UserStateTypes.clear);
 export const userSetMessages = createAction<IMessage[], UserStateTypes.setMessages>(
   UserStateTypes.setMessages
@@ -28,10 +29,14 @@ export const fetchUser: ActionCreator<ThunkResult<void>> =
       const user = await getUser(id);
 
       dispatch(userSet(user));
-    } catch {
-      toast.error('User not found');
+    } catch (e) {
+      if (e instanceof NotFoundError) {
+        toast.error(e.message);
+      }
 
-      dispatch(userFailure('User not found'));
+      const error = typeof e === 'string' ? new Error(e) : (e as Error);
+
+      dispatch(userFailure(error));
 
       return;
     }
