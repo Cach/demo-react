@@ -1,14 +1,14 @@
 import { Grid } from '@material-ui/core';
 import React, { FC, memo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Redirect, useParams } from 'react-router-dom';
 import { Dispatch } from 'redux';
 import Loader from '../../common/Loader';
 import PageWrapper from '../../common/PageWrapper';
 import { IUser } from '../../model/user.interface';
 import { RootState } from '../../store/types';
 import { fetchUser, userClear } from '../../store/user/actions';
-import { getUser, getUserLoading } from '../../store/user/selectors';
+import { getUser, getUserError, getUserLoading } from '../../store/user/selectors';
 import UserInfo from './components/UserInfo';
 import UserMessages from './components/UserMessages';
 
@@ -21,14 +21,18 @@ const User: FC = memo(() => {
 
   const isLoading = useSelector<RootState, boolean>(getUserLoading);
   const user = useSelector<RootState, IUser | null>(getUser);
+  const error = useSelector<RootState, string | null>(getUserError);
   const dispatch: Dispatch<RootState> = useDispatch<RootState>();
+
+  useEffect(
+    () => () => {
+      dispatch(userClear());
+    },
+    []
+  );
 
   useEffect(() => {
     dispatch(fetchUser(+id));
-
-    return () => {
-      dispatch(userClear());
-    };
   }, [dispatch, id]);
 
   return (
@@ -46,6 +50,8 @@ const User: FC = memo(() => {
           </Grid>
         </Grid>
       )}
+
+      {error && <Redirect to="/404" />}
     </PageWrapper>
   );
 });

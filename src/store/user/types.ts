@@ -5,6 +5,7 @@ export interface IUserState {
   isLoading: boolean;
   data: IUser | null;
   messages: IMessage[];
+  error: string | null;
 }
 
 export enum UserStateTypes {
@@ -37,6 +38,7 @@ export interface UserSuccessStateAction {
 
 export interface UserFailureStateAction {
   type: UserStateTypes.failure;
+  payload: string;
 }
 
 export interface UserClearStateAction {

@@ -12,7 +12,7 @@ import { UserStateTypes } from './types';
 export const userRequest = createAction<void, UserStateTypes.request>(UserStateTypes.request);
 export const userSet = createAction<IUser, UserStateTypes.set>(UserStateTypes.set);
 export const userSuccess = createAction<void, UserStateTypes.success>(UserStateTypes.success);
-export const userFailure = createAction<void, UserStateTypes.failure>(UserStateTypes.failure);
+export const userFailure = createAction<string, UserStateTypes.failure>(UserStateTypes.failure);
 export const userClear = createAction<void, UserStateTypes.clear>(UserStateTypes.clear);
 export const userSetMessages = createAction<IMessage[], UserStateTypes.setMessages>(
   UserStateTypes.setMessages
@@ -31,7 +31,7 @@ export const fetchUser: ActionCreator<ThunkResult<void>> =
     } catch {
       toast.error('User not found');
 
-      dispatch(userFailure());
+      dispatch(userFailure('User not found'));
 
       return;
     }

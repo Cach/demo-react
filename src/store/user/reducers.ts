@@ -16,6 +16,7 @@ const initialState: IUserState = {
   isLoading: false,
   data: null,
   messages: [],
+  error: null,
 };
 
 export const userReducer: Reducer<IUserState> = createReducer(initialState, {
@@ -31,9 +32,10 @@ export const userReducer: Reducer<IUserState> = createReducer(initialState, {
     ...state,
     isLoading: false,
   }),
-  [userFailure.type]: (state: IUserState): IUserState => ({
+  [userFailure.type]: (state: IUserState, action: PayloadAction<string>): IUserState => ({
     ...state,
     isLoading: false,
+    error: action.payload,
   }),
   [userClear.type]: (): IUserState => initialState,
   [userSetMessages.type]: (state: IUserState, action: PayloadAction<IMessage[]>): IUserState => ({
