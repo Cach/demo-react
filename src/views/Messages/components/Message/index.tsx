@@ -1,10 +1,10 @@
 import { Card, CardContent, CardHeader, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import format from 'date-fns/format';
-import React, { FC, memo, useMemo } from 'react';
+import React from 'react';
 import NavLink from '../../../../common/NavLink';
 import { IMessage } from '../../../../model/message.interface';
-import { MessageType } from '../../types';
+import { formatStringDate } from '../../../../utils/date';
+import { MessageShape } from '../../types';
 
 interface IProps {
   message: IMessage;
@@ -16,20 +16,17 @@ const useStyles = makeStyles({
   },
 });
 
-const Message: FC<IProps> = memo<IProps>((props): JSX.Element => {
+const Message: React.FC<IProps> = React.memo<IProps>((props) => {
   const classes = useStyles();
   const { message, date, user } = props.message;
 
-  const renderUser = useMemo(
-    () => <NavLink url={`/users/${user.id}`} label={`${user.firstName} ${user.lastName}`} />,
-    [user]
+  const renderUser = (
+    <NavLink url={`/users/${user.id}`} label={`${user.firstName} ${user.lastName}`} />
   );
-
-  const renderDate = useMemo(() => format(new Date(date), 'dd.MM.yyyy, HH:mm'), [date]);
 
   return (
     <Card className={classes.root}>
-      <CardHeader title={renderUser} subheader={renderDate} />
+      <CardHeader title={renderUser} subheader={formatStringDate(date)} />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
           {message}
@@ -40,7 +37,7 @@ const Message: FC<IProps> = memo<IProps>((props): JSX.Element => {
 });
 
 Message.propTypes = {
-  message: MessageType.isRequired,
+  message: MessageShape.isRequired,
 };
 
 export default Message;

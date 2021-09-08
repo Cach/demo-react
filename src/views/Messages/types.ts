@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import { UserType } from '../User/types';
+import { UserShape } from '../User/types';
 
-export const MessageType = PropTypes.shape({
+export const MessageShape = PropTypes.shape({
   id: PropTypes.number.isRequired,
   message: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
-  user: UserType.isRequired,
+  user: UserShape.isRequired,
 });

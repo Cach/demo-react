@@ -1,5 +1,4 @@
 import { createReducer, PayloadAction } from '@reduxjs/toolkit';
-import { Reducer } from 'redux';
 import { IMessage } from '../../model/message.interface';
 import {
   messageAdd,
@@ -53,19 +52,16 @@ const changeFormOpened = (state: IMessagesState, isOpened: boolean): IMessagesSt
   };
 };
 
-export const messagesReducer: Reducer<IMessagesState> = createReducer(initialState, {
-  [messagesRequest.type]: (state: IMessagesState): IMessagesState => ({
+export const messagesReducer = createReducer(initialState, {
+  [messagesRequest.type]: (state) => ({
     ...state,
     isLoading: true,
   }),
-  [messagesSet.type]: (
-    state: IMessagesState,
-    action: PayloadAction<IMessage[]>
-  ): IMessagesState => ({
+  [messagesSet.type]: (state, action) => ({
     ...state,
     data: action.payload,
   }),
-  [messageAdd.type]: (state: IMessagesState, action: PayloadAction<IMessage>): IMessagesState => {
+  [messageAdd.type]: (state, action: PayloadAction<IMessage>) => {
     const { data: messages, ...otherState } = state;
 
     return {
@@ -73,25 +69,21 @@ export const messagesReducer: Reducer<IMessagesState> = createReducer(initialSta
       data: [...messages, action.payload],
     };
   },
-  [messagesSuccess.type]: (state: IMessagesState): IMessagesState => ({
+  [messagesSuccess.type]: (state) => ({
     ...state,
     isLoading: false,
   }),
-  [messagesFailure.type]: (state: IMessagesState): IMessagesState => ({
+  [messagesFailure.type]: (state) => ({
     ...state,
     isLoading: false,
   }),
-  [messageFormOpen.type]: (state: IMessagesState): IMessagesState => changeFormOpened(state, true),
-  [messageFormClose.type]: (state: IMessagesState): IMessagesState =>
-    changeFormOpened(state, false),
-  [messageFormRequest.type]: (state: IMessagesState): IMessagesState =>
-    changeFormSending(state, true),
-  [messageFormSuccess.type]: (state: IMessagesState): IMessagesState =>
-    changeFormSending(state, false),
-  [messagesFormFailure.type]: (state: IMessagesState): IMessagesState =>
-    changeFormSending(state, false),
+  [messageFormOpen.type]: (state) => changeFormOpened(state, true),
+  [messageFormClose.type]: (state) => changeFormOpened(state, false),
+  [messageFormRequest.type]: (state) => changeFormSending(state, true),
+  [messageFormSuccess.type]: (state) => changeFormSending(state, false),
+  [messagesFormFailure.type]: (state) => changeFormSending(state, false),
   [messagesSetFilters.type]: (
-    state: IMessagesState,
+    state,
     action: PayloadAction<IMessagesFiltersState>
   ): IMessagesState => ({
     ...state,

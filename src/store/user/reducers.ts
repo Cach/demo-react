@@ -1,5 +1,4 @@
 import { createReducer, PayloadAction } from '@reduxjs/toolkit';
-import { Reducer } from 'redux';
 import { IMessage } from '../../model/message.interface';
 import { IUser } from '../../model/user.interface';
 import {
@@ -19,26 +18,26 @@ const initialState: IUserState = {
   error: null,
 };
 
-export const userReducer: Reducer<IUserState> = createReducer(initialState, {
-  [userRequest.type]: (state: IUserState): IUserState => ({
+export const userReducer = createReducer(initialState, {
+  [userRequest.type]: (state) => ({
     ...state,
     isLoading: true,
   }),
-  [userSet.type]: (state: IUserState, action: PayloadAction<IUser>): IUserState => ({
+  [userSet.type]: (state, action: PayloadAction<IUser>) => ({
     ...state,
     data: action.payload,
   }),
-  [userSuccess.type]: (state: IUserState): IUserState => ({
+  [userSuccess.type]: (state) => ({
     ...state,
     isLoading: false,
   }),
-  [userFailure.type]: (state: IUserState, action: PayloadAction<Error>): IUserState => ({
+  [userFailure.type]: (state, action: PayloadAction<Error>) => ({
     ...state,
     isLoading: false,
     error: action.payload,
   }),
-  [userClear.type]: (): IUserState => initialState,
-  [userSetMessages.type]: (state: IUserState, action: PayloadAction<IMessage[]>): IUserState => ({
+  [userClear.type]: () => initialState,
+  [userSetMessages.type]: (state, action: PayloadAction<IMessage[]>) => ({
     ...state,
     messages: action.payload,
   }),

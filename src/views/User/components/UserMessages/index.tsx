@@ -1,21 +1,18 @@
-import React, { FC, memo, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Dispatch } from 'redux';
 import MessagesList from '../../../../common/MessagesList';
-import { IMessage } from '../../../../model/message.interface';
 import { IUser } from '../../../../model/user.interface';
-import { RootState } from '../../../../store/types';
 import { fetchUserMessages } from '../../../../store/user/actions';
 import { getUserMessages } from '../../../../store/user/selectors';
-import { UserType } from '../../types';
+import { UserShape } from '../../types';
 
 interface IProps {
   user: IUser;
 }
 
-const UserMessages: FC<IProps> = memo<IProps>(({ user }) => {
-  const dispatch: Dispatch<RootState> = useDispatch<RootState>();
-  const messages = useSelector<RootState, IMessage[]>(getUserMessages);
+const UserMessages: React.FC<IProps> = React.memo<IProps>(({ user }) => {
+  const dispatch = useDispatch();
+  const messages = useSelector(getUserMessages);
 
   useEffect(() => {
     dispatch(fetchUserMessages(user.id));
@@ -25,7 +22,7 @@ const UserMessages: FC<IProps> = memo<IProps>(({ user }) => {
 });
 
 UserMessages.propTypes = {
-  user: UserType.isRequired,
+  user: UserShape.isRequired,
 };
 
 export default UserMessages;

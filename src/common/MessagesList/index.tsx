@@ -1,30 +1,26 @@
 import { List, ListItem } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import React, { FC, memo, useMemo } from 'react';
+import React from 'react';
 import { IMessage } from '../../model/message.interface';
 import Message from '../../views/Messages/components/Message';
-import { MessageType } from '../../views/Messages/types';
+import { MessageShape } from '../../views/Messages/types';
 
 interface IProps {
   messages: IMessage[];
 }
 
-const MessagesList: FC<IProps> = memo<IProps>(({ messages }): JSX.Element => {
-  const renderMessagesList = useMemo(
-    () =>
-      messages.map((message) => (
-        <ListItem key={message.id} sx={{ paddingX: 0 }}>
-          <Message message={message} />
-        </ListItem>
-      )),
-    [messages]
-  );
+const MessagesList: React.FC<IProps> = React.memo<IProps>(({ messages }) => {
+  const renderMessagesList = messages.map((message) => (
+    <ListItem key={message.id} sx={{ paddingX: 0 }}>
+      <Message message={message} />
+    </ListItem>
+  ));
 
   return <List>{renderMessagesList}</List>;
 });
 
 MessagesList.propTypes = {
-  messages: PropTypes.arrayOf(MessageType.isRequired).isRequired,
+  messages: PropTypes.arrayOf(MessageShape.isRequired).isRequired,
 };
 
 export default MessagesList;

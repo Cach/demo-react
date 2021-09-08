@@ -1,24 +1,22 @@
 import { Button } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import PropTypes from 'prop-types';
-import React, { FC, memo } from 'react';
+import React from 'react';
 
 interface IProps {
   label: string;
-  handleClick: () => void;
+  onClick: () => void;
 }
 
-const SendButton: FC<IProps> = memo<IProps>(
-  ({ label, handleClick }): JSX.Element => (
-    <Button variant="outlined" endIcon={<SendIcon />} onClick={handleClick}>
-      {label}
-    </Button>
-  )
-);
+const SendButton: React.FC<IProps> = React.memo<IProps>(({ label, onClick }) => (
+  <Button variant="outlined" endIcon={<SendIcon />} onClick={onClick}>
+    {label}
+  </Button>
+));
 
 SendButton.propTypes = {
   label: PropTypes.string.isRequired,
-  handleClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default SendButton;

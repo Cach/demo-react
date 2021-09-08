@@ -1,35 +1,33 @@
 import { Card, CardContent, Typography } from '@material-ui/core';
-import React, { FC, memo } from 'react';
+import React from 'react';
 import UserAvatar from '../../../../common/UserAvatar';
 import { IUser } from '../../../../model/user.interface';
-import { UserType } from '../../types';
+import { UserShape } from '../../types';
 
 interface IProps {
   user: IUser;
 }
 
-const UserInfo: FC<IProps> = memo<IProps>(
-  ({ user }): JSX.Element => (
-    <Card>
-      <CardContent
-        sx={{
-          flexDirection: 'column',
-          alignItems: 'center',
-          display: 'flex',
-        }}
-      >
-        <UserAvatar user={user} />
+const UserInfo: React.FC<IProps> = React.memo<IProps>(({ user }) => (
+  <Card>
+    <CardContent
+      sx={{
+        flexDirection: 'column',
+        alignItems: 'center',
+        display: 'flex',
+      }}
+    >
+      <UserAvatar user={user} />
 
-        <Typography gutterBottom variant="h5" component="div" sx={{ m: 0 }}>
-          {user.firstName} {user.lastName}
-        </Typography>
-      </CardContent>
-    </Card>
-  )
-);
+      <Typography gutterBottom variant="h5" component="div" sx={{ m: 0 }}>
+        {user.firstName} {user.lastName}
+      </Typography>
+    </CardContent>
+  </Card>
+));
 
 UserInfo.propTypes = {
-  user: UserType.isRequired,
+  user: UserShape.isRequired,
 };
 
 export default UserInfo;

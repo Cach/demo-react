@@ -1,25 +1,15 @@
 import { Box, Button, FormControl, Grid, TextField } from '@material-ui/core';
 import { DatePicker, LocalizationProvider } from '@material-ui/lab';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import React, {
-  ChangeEvent,
-  FC,
-  KeyboardEvent,
-  memo,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react';
+import React, { ChangeEvent, KeyboardEvent, useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Dispatch } from 'redux';
 import FormButtons from '../../../../common/FormButtons';
 import { messagesSetFilters } from '../../../../store/messages/actions';
-import { RootState } from '../../../../store/types';
 
-const MessagesFiltersForm: FC = memo(() => {
-  const dispatch: Dispatch<RootState> = useDispatch<RootState>();
+const MessagesFiltersForm: React.FC = React.memo(() => {
+  const dispatch = useDispatch();
   const [date, setDate] = useState<Date | null>(null);
-  const [user, setUser] = useState<string>('');
+  const [user, setUser] = useState('');
 
   useEffect(() => {
     const filters = {

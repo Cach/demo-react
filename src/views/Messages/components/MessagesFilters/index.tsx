@@ -1,9 +1,9 @@
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import React, { FC, memo } from 'react';
+import React from 'react';
 import MessagesFiltersForm from '../MessagesFiltersForm';
 
-const MessagesFilters: FC = memo(() => (
+const MessagesFilters: React.FC = React.memo(() => (
   <Accordion>
     <AccordionSummary
       expandIcon={<ExpandMoreIcon />}

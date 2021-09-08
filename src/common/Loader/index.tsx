@@ -1,7 +1,7 @@
 import { CircularProgress } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
-import React, { FC, memo } from 'react';
+import React from 'react';
 
 const DEFAULT_SIZE = 25;
 
@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Loader: FC<IProps> = memo<IProps>(({ size }): JSX.Element => {
+const Loader: React.FC<IProps> = React.memo<IProps>(({ size }) => {
   const classes = useStyles();
 
   return (

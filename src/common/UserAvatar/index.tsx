@@ -1,26 +1,24 @@
 import { Avatar } from '@material-ui/core';
 import { deepOrange } from '@material-ui/core/colors';
 import PropTypes from 'prop-types';
-import React, { FC, memo, useMemo } from 'react';
+import React from 'react';
 import { IUser } from '../../model/user.interface';
-import { UserType } from '../../views/User/types';
+import { UserShape } from '../../views/User/types';
+import { makeAvatarLabel } from './utils';
 
 interface IProps {
   user: IUser;
   size?: number;
 }
 
-const UserAvatar: FC<IProps> = memo<IProps>(({ user, size }): JSX.Element => {
-  const labelMemo = useMemo(
-    () => [user.firstName, user.lastName].map((item) => item.charAt(0).toUpperCase()).join(''),
-    [user]
-  );
-
-  return <Avatar sx={{ width: size, height: size, bgcolor: deepOrange[500] }}>{labelMemo}</Avatar>;
-});
+const UserAvatar: React.FC<IProps> = React.memo<IProps>(({ user, size }) => (
+  <Avatar sx={{ width: size, height: size, bgcolor: deepOrange[500] }}>
+    {makeAvatarLabel(user)}
+  </Avatar>
+));
 
 UserAvatar.propTypes = {
-  user: UserType.isRequired,
+  user: UserShape.isRequired,
   size: PropTypes.number,
 };
 
