@@ -1,6 +1,7 @@
+import React, { ReactNode } from 'react';
+
 import { Box } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import React, { ReactNode } from 'react';
 
 interface IProps {
   children: ReactNode | ReactNode[];

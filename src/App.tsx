@@ -1,6 +1,8 @@
-import { createTheme, CssBaseline, Theme, ThemeProvider } from '@material-ui/core';
 import React from 'react';
+
+import { createTheme, CssBaseline, Theme, ThemeProvider } from '@material-ui/core';
 import { ToastContainer } from 'react-toastify';
+
 import 'react-toastify/dist/ReactToastify.css';
 import Root from './views/Root';
 

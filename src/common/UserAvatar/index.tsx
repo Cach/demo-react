@@ -1,7 +1,9 @@
+import React from 'react';
+
 import { Avatar } from '@material-ui/core';
 import { deepOrange } from '@material-ui/core/colors';
 import PropTypes from 'prop-types';
-import React from 'react';
+
 import { IUser } from '../../model/user.interface';
 import { UserShape } from '../../views/User/types';
 import { makeAvatarLabel } from './utils';

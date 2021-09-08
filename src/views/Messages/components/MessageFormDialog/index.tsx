@@ -1,5 +1,7 @@
 import React, { useCallback } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
+
 import FormDialog from '../../../../common/FormDialog';
 import { IMessageForm } from '../../../../model/message.interface';
 import { messageFormClose, sendFormRequest } from '../../../../store/messages/actions';

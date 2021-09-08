@@ -1,6 +1,8 @@
-import { ActionCreator, createAction } from '@reduxjs/toolkit';
 import { Dispatch } from 'react';
+
+import { ActionCreator, createAction } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
+
 import { getMessagesByUser } from '../../api/messages';
 import { getUser } from '../../api/users';
 import { NotFoundError } from '../../entity/not-found';

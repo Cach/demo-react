@@ -1,6 +1,8 @@
+import React from 'react';
+
 import { Card, CardContent, CardHeader, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
-import React from 'react';
+
 import NavLink from '../../../../common/NavLink';
 import { IMessage } from '../../../../model/message.interface';
 import { formatStringDate } from '../../../../utils/date';

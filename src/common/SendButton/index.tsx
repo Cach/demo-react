@@ -1,7 +1,8 @@
+import React from 'react';
+
 import { Button } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import PropTypes from 'prop-types';
-import React from 'react';
 
 interface IProps {
   label: string;

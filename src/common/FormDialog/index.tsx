@@ -1,6 +1,7 @@
+import React, { ReactNode } from 'react';
+
 import { Dialog, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import React, { ReactNode } from 'react';
 
 interface IProps {
   title: string;

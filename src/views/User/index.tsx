@@ -1,7 +1,9 @@
-import { Grid } from '@material-ui/core';
 import React, { useEffect } from 'react';
+
+import { Grid } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
+
 import Loader from '../../common/Loader';
 import PageWrapper from '../../common/PageWrapper';
 import { fetchUser, userClear } from '../../store/user/actions';

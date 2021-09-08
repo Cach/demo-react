@@ -1,7 +1,8 @@
+import React from 'react';
+
 import { CircularProgress } from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
-import React from 'react';
 
 const DEFAULT_SIZE = 25;
 

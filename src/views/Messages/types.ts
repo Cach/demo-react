@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+
 import { UserShape } from '../User/types';
 
 export const MessageShape = PropTypes.shape({

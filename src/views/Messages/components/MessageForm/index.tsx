@@ -1,8 +1,10 @@
+import React, { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
+
 import { Box, Button, FormControl, TextField, Typography } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import { LoadingButton } from '@material-ui/lab';
 import PropTypes from 'prop-types';
-import React, { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
+
 import FormButtons from '../../../../common/FormButtons';
 import { IMessageForm } from '../../../../model/message.interface';
 

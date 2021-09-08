@@ -1,6 +1,8 @@
-import { ActionCreator, createAction } from '@reduxjs/toolkit';
 import { Dispatch } from 'react';
+
+import { ActionCreator, createAction } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
+
 import { addMessage, getMessages } from '../../api/messages';
 import { IMessage, IMessageForm } from '../../model/message.interface';
 import { timeout } from '../../utils/timeout';

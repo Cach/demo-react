@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
+
 import MessagesList from '../../../../common/MessagesList';
 import { IUser } from '../../../../model/user.interface';
 import { fetchUserMessages } from '../../../../store/user/actions';

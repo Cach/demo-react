@@ -1,4 +1,5 @@
 import isSameDay from 'date-fns/isSameDay';
+
 import { IMessage } from '../../model/message.interface';
 import { escape, isSubstring } from '../../utils/string';
 import { RootState } from '../types';

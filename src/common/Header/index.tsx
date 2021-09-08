@@ -1,5 +1,7 @@
-import { Toolbar, Typography } from '@material-ui/core';
 import React from 'react';
+
+import { Toolbar, Typography } from '@material-ui/core';
+
 import NavLink from '../NavLink';
 
 const toolbarSX = {

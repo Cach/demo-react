@@ -1,6 +1,8 @@
+import React from 'react';
+
 import { List, ListItem } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import React from 'react';
+
 import { IMessage } from '../../model/message.interface';
 import Message from '../../views/Messages/components/Message';
 import { MessageShape } from '../../views/Messages/types';

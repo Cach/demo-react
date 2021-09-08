@@ -1,6 +1,8 @@
-import { Container } from '@material-ui/core';
 import React from 'react';
+
+import { Container } from '@material-ui/core';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
 import Header from '../../common/Header';
 import Messages from '../Messages';
 import NotFound from '../NotFound';

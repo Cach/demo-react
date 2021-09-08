@@ -1,4 +1,5 @@
 import { ThunkAction } from '@reduxjs/toolkit';
+
 import { rootReducer } from './index';
 import { MessagesActionTypes } from './messages/types';
 import { UserActionTypes } from './user/types';

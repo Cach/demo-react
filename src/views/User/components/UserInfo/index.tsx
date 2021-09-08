@@ -1,5 +1,7 @@
-import { Card, CardContent, Typography } from '@material-ui/core';
 import React from 'react';
+
+import { Card, CardContent, Typography } from '@material-ui/core';
+
 import UserAvatar from '../../../../common/UserAvatar';
 import { IUser } from '../../../../model/user.interface';
 import { UserShape } from '../../types';
