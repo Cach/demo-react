@@ -11,7 +11,7 @@ interface IProps {
   messages: IMessage[];
 }
 
-const MessagesList: React.FC<IProps> = React.memo<IProps>(({ messages }) => {
+const MessagesList: React.FC<IProps> = React.memo(({ messages }) => {
   const renderMessagesList = messages.map((message) => (
     <ListItem key={message.id} sx={{ paddingX: 0 }}>
       <Message message={message} />

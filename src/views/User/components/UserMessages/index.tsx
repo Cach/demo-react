@@ -12,7 +12,7 @@ interface IProps {
   user: IUser;
 }
 
-const UserMessages: React.FC<IProps> = React.memo<IProps>(({ user }) => {
+const UserMessages: React.FC<IProps> = React.memo(({ user }) => {
   const dispatch = useDispatch();
   const messages = useSelector(getUserMessages);
 

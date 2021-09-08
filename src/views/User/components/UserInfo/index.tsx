@@ -10,7 +10,7 @@ interface IProps {
   user: IUser;
 }
 
-const UserInfo: React.FC<IProps> = React.memo<IProps>(({ user }) => (
+const UserInfo: React.FC<IProps> = React.memo(({ user }) => (
   <Card>
     <CardContent
       sx={{

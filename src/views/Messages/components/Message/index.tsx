@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Message: React.FC<IProps> = React.memo<IProps>((props) => {
+const Message: React.FC<IProps> = React.memo((props) => {
   const classes = useStyles();
   const { message, date, user } = props.message;
 

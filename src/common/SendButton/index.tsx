@@ -9,7 +9,7 @@ interface IProps {
   onClick: () => void;
 }
 
-const SendButton: React.FC<IProps> = React.memo<IProps>(({ label, onClick }) => (
+const SendButton: React.FC<IProps> = React.memo(({ label, onClick }) => (
   <Button variant="outlined" endIcon={<SendIcon />} onClick={onClick}>
     {label}
   </Button>

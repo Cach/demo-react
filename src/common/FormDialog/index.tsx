@@ -11,7 +11,7 @@ interface IProps {
   children: ReactNode;
 }
 
-const FormDialog: React.FC<IProps> = React.memo<IProps>(
+const FormDialog: React.FC<IProps> = React.memo(
   ({ title, description, isOpen, onClose, children }) => (
     <Dialog open={isOpen} onClose={onClose} fullWidth>
       <DialogTitle>{title}</DialogTitle>

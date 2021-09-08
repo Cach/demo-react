@@ -9,7 +9,7 @@ interface IProps {
   url: string;
 }
 
-const NavLink: React.FC<IProps> = React.memo<IProps>(({ label, url }) => (
+const NavLink: React.FC<IProps> = React.memo(({ label, url }) => (
   <MaterialLink component={RouterLink} to={url}>
     {label}
   </MaterialLink>

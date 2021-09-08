@@ -13,7 +13,7 @@ interface IProps {
   size?: number;
 }
 
-const UserAvatar: React.FC<IProps> = React.memo<IProps>(({ user, size }) => (
+const UserAvatar: React.FC<IProps> = React.memo(({ user, size }) => (
   <Avatar sx={{ width: size, height: size, bgcolor: deepOrange[500] }}>
     {makeAvatarLabel(user)}
   </Avatar>

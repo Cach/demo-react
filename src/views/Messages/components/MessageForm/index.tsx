@@ -16,7 +16,7 @@ interface IProps {
 
 const MESSAGE_LIMIT = 200;
 
-const MessageForm: React.FC<IProps> = React.memo<IProps>(({ isSending, onSubmit, onCancel }) => {
+const MessageForm: React.FC<IProps> = React.memo(({ isSending, onSubmit, onCancel }) => {
   const [message, setMessage] = useState('');
   const [isValid, setIsValid] = useState(false);
 
