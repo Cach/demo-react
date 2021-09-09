@@ -18,12 +18,12 @@ interface IProps {
 }
 
 const MessageForm: React.FC<IProps> = React.memo(({ isSending, onSubmit, onCancel }) => {
-  const formik = useFormik<IMessageForm>({
+  const { values, setFieldValue, errors, handleSubmit } = useFormik<IMessageForm>({
     initialValues: {
       message: '',
     },
     validationSchema: ValidationSchema,
-    onSubmit: (values) => onSubmit(values),
+    onSubmit: (formData) => onSubmit(formData),
   });
 
   const handleMessageChange = useCallback(
@@ -34,19 +34,13 @@ const MessageForm: React.FC<IProps> = React.memo(({ isSending, onSubmit, onCance
         value = value.slice(0, MESSAGE_LIMIT);
       }
 
-      formik.setFieldValue('message', value);
+      setFieldValue('message', value);
     },
-    [formik]
+    [setFieldValue]
   );
 
   return (
-    <Box
-      component="form"
-      onSubmit={formik.handleSubmit}
-      noValidate
-      autoComplete="off"
-      sx={{ mt: 1 }}
-    >
+    <Box onSubmit={handleSubmit} component="form" noValidate autoComplete="off" sx={{ mt: 1 }}>
       <FormControl fullWidth sx={{ mb: 1 }}>
         <TextField
           id="message-field"
@@ -54,14 +48,14 @@ const MessageForm: React.FC<IProps> = React.memo(({ isSending, onSubmit, onCance
           name="message"
           multiline
           rows={5}
-          error={!!formik.errors.message}
-          value={formik.values.message}
+          error={!!errors.message}
+          value={values.message}
           sx={{ width: '100%' }}
           disabled={isSending}
           onChange={handleMessageChange}
         />
 
-        <CharacterCounter value={formik.values.message} max={MESSAGE_LIMIT} />
+        <CharacterCounter value={values.message} max={MESSAGE_LIMIT} />
       </FormControl>
 
       <FormButtons>
