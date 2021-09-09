@@ -18,7 +18,7 @@ interface IProps {
 }
 
 const MessageForm: React.FC<IProps> = React.memo(({ isSending, onSubmit, onCancel }) => {
-  const formik = useFormik({
+  const formik = useFormik<IMessageForm>({
     initialValues: {
       message: '',
     },

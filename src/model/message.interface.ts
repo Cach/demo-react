@@ -10,3 +10,8 @@ export interface IMessage {
 export interface IMessageForm {
   message: string;
 }
+
+export interface IMessageFiltersForm {
+  date: Date | null;
+  user: string;
+}
