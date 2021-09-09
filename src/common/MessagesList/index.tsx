@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import { IMessage } from '../../model/message.interface';
 import Message from '../../views/Messages/components/Message';
-import { MessageShape } from '../../views/Messages/types';
+import { MessageShape } from '../../views/Messages/shapes';
 
 interface IProps {
   messages: IMessage[];

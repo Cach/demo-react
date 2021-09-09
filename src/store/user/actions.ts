@@ -23,6 +23,7 @@ export const userSetMessages = createAction<IMessage[], UserStateTypes.setMessag
 
 export const fetchUser: ActionCreator<ThunkResult<void>> =
   (id: number) => async (dispatch: Dispatch<RootState>) => {
+    dispatch(userClear());
     dispatch(userRequest());
 
     try {

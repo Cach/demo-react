@@ -1,2 +1,3 @@
-export const randomInt = (min: number, max: number) =>
-  Math.floor(Math.random() * (max - min)) + min;
+let id = Date.now();
+
+export const uniqueId = (): number => id++;

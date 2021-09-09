@@ -6,7 +6,7 @@ import MessagesList from '../../../../common/MessagesList';
 import { IUser } from '../../../../model/user.interface';
 import { fetchUserMessages } from '../../../../store/user/actions';
 import { getUserMessages } from '../../../../store/user/selectors';
-import { UserShape } from '../../types';
+import { UserShape } from '../../shapes';
 
 interface IProps {
   user: IUser;

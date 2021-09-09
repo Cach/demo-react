@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 
 import { Grid } from '@material-ui/core';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Redirect, useParams } from 'react-router-dom';
 
 import Loader from '../../common/Loader';
 import PageWrapper from '../../common/PageWrapper';
-import { fetchUser, userClear } from '../../store/user/actions';
-import { getUser, getUserError, getUserLoading } from '../../store/user/selectors';
+import { fetchUser } from '../../store/user/actions';
 import UserInfo from './components/UserInfo';
 import UserMessages from './components/UserMessages';
+import { useViewedUser } from './hooks';
 
 interface IParams {
   id: string;
@@ -17,18 +17,8 @@ interface IParams {
 
 const User: React.FC = React.memo(() => {
   const { id } = useParams<IParams>();
-
-  const isLoading = useSelector(getUserLoading);
-  const user = useSelector(getUser);
-  const error = useSelector(getUserError);
+  const [user, { isLoading, error }] = useViewedUser();
   const dispatch = useDispatch();
-
-  useEffect(
-    () => () => {
-      dispatch(userClear());
-    },
-    []
-  );
 
   useEffect(() => {
     dispatch(fetchUser(+id));

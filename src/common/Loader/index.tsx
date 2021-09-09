@@ -18,7 +18,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Loader: React.FC<IProps> = React.memo<IProps>(({ size }) => {
+const Loader: React.FC<IProps> = React.memo(({ size }) => {
   const classes = useStyles();
 
   return (

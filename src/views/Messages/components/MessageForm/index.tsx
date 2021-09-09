@@ -1,12 +1,15 @@
-import React, { ChangeEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { ChangeEvent, useCallback } from 'react';
 
-import { Box, Button, FormControl, TextField, Typography } from '@material-ui/core';
+import { Box, Button, FormControl, TextField } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import { LoadingButton } from '@material-ui/lab';
+import { useFormik } from 'formik';
 import PropTypes from 'prop-types';
 
+import CharacterCounter from '../../../../common/CharacterCounter';
 import FormButtons from '../../../../common/FormButtons';
 import { IMessageForm } from '../../../../model/message.interface';
+import { MESSAGE_LIMIT, ValidationSchema } from './validation';
 
 interface IProps {
   isSending: boolean;
@@ -14,62 +17,51 @@ interface IProps {
   onCancel: () => void;
 }
 
-const MESSAGE_LIMIT = 200;
-
 const MessageForm: React.FC<IProps> = React.memo(({ isSending, onSubmit, onCancel }) => {
-  const [message, setMessage] = useState('');
-  const [isValid, setIsValid] = useState(false);
-
-  useEffect(() => {
-    setIsValid(!!message.length);
-  }, [message]);
-
-  const handleFormSubmit = useCallback(
-    (event) => {
-      event.preventDefault();
-
-      onSubmit({ message });
+  const formik = useFormik({
+    initialValues: {
+      message: '',
     },
-    [onSubmit, message]
-  );
+    validationSchema: ValidationSchema,
+    onSubmit: (values) => onSubmit(values),
+  });
 
-  const handleMessageChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-    let { value } = event.target;
+  const handleMessageChange = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      let { value } = event.target;
 
-    if (value.length > MESSAGE_LIMIT) {
-      value = value.slice(0, MESSAGE_LIMIT);
-    }
+      if (value.length > MESSAGE_LIMIT) {
+        value = value.slice(0, MESSAGE_LIMIT);
+      }
 
-    setMessage(value);
-  }, []);
-
-  const handleMessageKeyDown = useCallback(() => message.length < MESSAGE_LIMIT, [message]);
-
-  const renderMessageCounter = useMemo<JSX.Element>(
-    () => (
-      <Typography variant="caption" display="block" gutterBottom align="right">
-        {message.length}/{MESSAGE_LIMIT}
-      </Typography>
-    ),
-    [message]
+      formik.setFieldValue('message', value);
+    },
+    [formik]
   );
 
   return (
-    <Box component="form" noValidate autoComplete="off" sx={{ mt: 1 }}>
+    <Box
+      component="form"
+      onSubmit={formik.handleSubmit}
+      noValidate
+      autoComplete="off"
+      sx={{ mt: 1 }}
+    >
       <FormControl fullWidth sx={{ mb: 1 }}>
         <TextField
           id="message-field"
           label="Message"
+          name="message"
           multiline
           rows={5}
-          value={message}
+          error={!!formik.errors.message}
+          value={formik.values.message}
           sx={{ width: '100%' }}
           disabled={isSending}
           onChange={handleMessageChange}
-          onKeyDown={handleMessageKeyDown}
         />
 
-        {renderMessageCounter}
+        <CharacterCounter value={formik.values.message} max={MESSAGE_LIMIT} />
       </FormControl>
 
       <FormButtons>
@@ -78,12 +70,11 @@ const MessageForm: React.FC<IProps> = React.memo(({ isSending, onSubmit, onCance
         </Button>
 
         <LoadingButton
+          type="submit"
           loading={isSending}
           loadingPosition="start"
           startIcon={<SendIcon />}
-          onClick={handleFormSubmit}
           variant="outlined"
-          disabled={!isValid}
         >
           Send
         </LoadingButton>

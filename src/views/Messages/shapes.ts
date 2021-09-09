@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { UserShape } from '../User/types';
+import { UserShape } from '../User/shapes';
 
 export const MessageShape = PropTypes.shape({
   id: PropTypes.number.isRequired,

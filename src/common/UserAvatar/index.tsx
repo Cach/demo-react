@@ -5,7 +5,7 @@ import { deepOrange } from '@material-ui/core/colors';
 import PropTypes from 'prop-types';
 
 import { IUser } from '../../model/user.interface';
-import { UserShape } from '../../views/User/types';
+import { UserShape } from '../../views/User/shapes';
 import { makeAvatarLabel } from './utils';
 
 interface IProps {
