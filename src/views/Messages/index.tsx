@@ -1,19 +1,18 @@
 import React, { useEffect, useMemo } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import Loader from '../../common/Loader';
 import MessagesList from '../../common/MessagesList';
 import PageWrapper from '../../common/PageWrapper';
 import { fetchMessages } from '../../store/messages/actions';
-import { getMessages, getMessagesLoading } from '../../store/messages/selectors';
 import MessageFormDialog from './components/MessageFormDialog';
 import MessagesFilters from './components/MessagesFilters';
 import SendMessageButton from './components/SendMessageButton';
+import { useMessages } from './hooks';
 
 const Messages: React.FC = React.memo(() => {
-  const isLoading = useSelector(getMessagesLoading);
-  const messages = useSelector(getMessages);
+  const [messages, isLoading] = useMessages();
   const dispatch = useDispatch();
 
   useEffect(() => {
