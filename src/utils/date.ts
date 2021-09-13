@@ -7,14 +7,13 @@ export const getDateObject = (value: string | Date): Date => {
     return value;
   }
 
-  const date = parseISO(value);
-
-  if (!isValid(date)) {
-    return new Date();
-  }
-
-  return date;
+  return parseISO(value);
 };
 
-export const formatDate = (value: string | Date): string =>
-  format(getDateObject(value), 'dd.MM.yyyy, HH:mm');
+export const formatDate = (value: string | Date): string => {
+  if (!isValid(value)) {
+    return '';
+  }
+
+  return format(getDateObject(value), 'dd.MM.yyyy, HH:mm');
+};
