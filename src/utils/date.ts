@@ -11,9 +11,11 @@ export const getDateObject = (value: string | Date): Date => {
 };
 
 export const formatDate = (value: string | Date): string => {
-  if (!isValid(value)) {
+  const date = getDateObject(value);
+
+  if (!isValid(date)) {
     return '';
   }
 
-  return format(getDateObject(value), 'dd.MM.yyyy, HH:mm');
+  return format(date, 'dd.MM.yyyy, HH:mm');
 };
