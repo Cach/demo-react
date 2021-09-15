@@ -1,6 +1,7 @@
 import { MOCK_USERS_PATH } from '../config/constants';
-import { NotFoundError } from '../entity/not-found';
-import { IUser } from '../model/user.interface';
+import { NotFoundError } from '../errors/not-found';
+import { IUser } from '../interfaces/user';
+import { User } from '../model/user';
 
 export const getUser = (id: number): Promise<IUser> =>
   fetch(MOCK_USERS_PATH)
@@ -12,5 +13,5 @@ export const getUser = (id: number): Promise<IUser> =>
         throw new NotFoundError('User not found');
       }
 
-      return user;
+      return new User(user.id, user.firstName, user.lastName);
     });

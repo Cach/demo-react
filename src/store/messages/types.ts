@@ -1,4 +1,4 @@
-import { IMessage } from '../../model/message.interface';
+import { IMessage } from '../../interfaces/message';
 
 export interface IMessageFormState {
   isOpened: boolean;

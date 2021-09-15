@@ -5,10 +5,10 @@ import { toast } from 'react-toastify';
 
 import { getMessagesByUser } from '../../api/messages';
 import { getUser } from '../../api/users';
-import { NotFoundError } from '../../entity/not-found';
-import { IMessage } from '../../model/message.interface';
-import { IUser } from '../../model/user.interface';
-import { timeout } from '../../utils/timeout';
+import { NotFoundError } from '../../errors/not-found';
+import { IMessage } from '../../interfaces/message';
+import { IUser } from '../../interfaces/user';
+import { delay } from '../../utils/delay';
 import { RootState, ThunkResult } from '../types';
 import { UserStateTypes } from './types';
 
@@ -27,7 +27,7 @@ export const fetchUser: ActionCreator<ThunkResult<void>> =
     dispatch(userRequest());
 
     try {
-      await timeout(1000);
+      await delay(1000);
 
       const user = await getUser(id);
 

@@ -1,4 +1,4 @@
-import React, { KeyboardEvent, useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { Box, Button, FormControl, Grid, TextField } from '@material-ui/core';
 import { DatePicker, LocalizationProvider } from '@material-ui/lab';
@@ -7,7 +7,7 @@ import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 
 import FormButtons from '../../../../common/FormButtons';
-import { IMessageFiltersForm } from '../../../../model/message.interface';
+import { IMessageFiltersForm } from '../../../../interfaces/message';
 import { messagesSetFilters } from '../../../../store/messages/actions';
 
 const MessagesFiltersForm: React.FC = React.memo(() => {
@@ -34,10 +34,6 @@ const MessagesFiltersForm: React.FC = React.memo(() => {
     [setFieldValue]
   );
 
-  const handleKeypress = (event: KeyboardEvent<HTMLInputElement>): void => {
-    event.preventDefault();
-  };
-
   return (
     <Box component="form" noValidate autoComplete="off">
       <Grid container spacing={2}>
@@ -61,9 +57,7 @@ const MessagesFiltersForm: React.FC = React.memo(() => {
                 value={values.date}
                 inputFormat="dd/MM/yyyy"
                 onChange={handleDateChange}
-                renderInput={(params) => (
-                  <TextField {...params} name="date" onKeyPress={handleKeypress} />
-                )}
+                renderInput={(params) => <TextField {...params} name="date" />}
               />
             </LocalizationProvider>
           </FormControl>

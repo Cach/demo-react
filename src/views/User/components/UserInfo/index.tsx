@@ -3,7 +3,7 @@ import React from 'react';
 import { Card, CardContent, Typography } from '@material-ui/core';
 
 import UserAvatar from '../../../../common/UserAvatar';
-import { IUser } from '../../../../model/user.interface';
+import { IUser } from '../../../../interfaces/user';
 import { UserShape } from '../../shapes';
 
 interface IProps {
@@ -22,7 +22,7 @@ const UserInfo: React.FC<IProps> = React.memo(({ user }) => (
       <UserAvatar user={user} />
 
       <Typography gutterBottom variant="h5" component="div" sx={{ m: 0 }}>
-        {user.firstName} {user.lastName}
+        {user.fullName}
       </Typography>
     </CardContent>
   </Card>

@@ -1,26 +1,28 @@
 import isSameDay from 'date-fns/isSameDay';
 
-import { IMessage } from '../../model/message.interface';
-import { escape, isSubstring } from '../../utils/string';
+import { IMessage } from '../../interfaces/message';
 import { RootState } from '../types';
 import { IMessagesFiltersState } from './types';
 
 const filterMessages = (messages: IMessage[], filters: IMessagesFiltersState): IMessage[] => {
-  const { date, user } = filters;
+  const searchDate = filters.date;
+  const searchUser = filters.user.toLowerCase();
 
-  if (!date && !user?.length) {
-    return messages;
+  let filteredMessages = messages;
+
+  if (searchDate) {
+    filteredMessages = filteredMessages.filter((message) =>
+      isSameDay(new Date(message.date), searchDate)
+    );
   }
 
-  return messages.filter((message: IMessage) => {
-    if (date && !isSameDay(new Date(message.date), date)) {
-      return false;
-    }
+  if (searchUser.length) {
+    filteredMessages = filteredMessages.filter((message) =>
+      message.user.fullName.toLowerCase().includes(searchUser)
+    );
+  }
 
-    const username = `${message.user.firstName} ${message.user.lastName}`;
-
-    return !user?.length || isSubstring(username, escape(user));
-  });
+  return filteredMessages;
 };
 
 export const getMessages = (state: RootState): IMessage[] =>

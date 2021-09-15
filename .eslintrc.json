@@ -28,6 +28,7 @@
         "import/no-cycle": "off",
         "react/jsx-props-no-spreading": "off",
         "no-plusplus": "off",
+        "@typescript-eslint/lines-between-class-members": ["error", "always", { "exceptAfterSingleLine": true }],
         "import/order": [
             "error",
             {

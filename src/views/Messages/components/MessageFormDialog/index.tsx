@@ -3,7 +3,7 @@ import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import FormDialog from '../../../../common/FormDialog';
-import { IMessageForm } from '../../../../model/message.interface';
+import { IMessageForm } from '../../../../interfaces/message';
 import { messageFormClose, sendFormRequest } from '../../../../store/messages/actions';
 import { getFormIsSending, getFormOpen } from '../../../../store/messages/selectors';
 import MessageForm from '../MessageForm';

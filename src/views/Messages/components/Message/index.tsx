@@ -1,10 +1,9 @@
 import React from 'react';
 
 import { Card, CardContent, CardHeader, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/styles';
 
 import NavLink from '../../../../common/NavLink';
-import { IMessage } from '../../../../model/message.interface';
+import { IMessage } from '../../../../interfaces/message';
 import { formatDate } from '../../../../utils/date';
 import { MessageShape } from '../../shapes';
 
@@ -12,20 +11,13 @@ interface IProps {
   message: IMessage;
 }
 
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-  },
-});
-
 const Message: React.FC<IProps> = React.memo((props) => {
-  const classes = useStyles();
   const { message, date, user } = props.message;
 
   return (
-    <Card className={classes.root}>
+    <Card sx={{ width: '100%' }}>
       <CardHeader
-        title={<NavLink url={`/users/${user.id}`} label={`${user.firstName} ${user.lastName}`} />}
+        title={<NavLink url={`/users/${user.id}`} label={user.fullName} />}
         subheader={formatDate(date)}
       />
       <CardContent>

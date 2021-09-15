@@ -1,5 +1,5 @@
-import { IMessage } from '../../model/message.interface';
-import { IUser } from '../../model/user.interface';
+import { IMessage } from '../../interfaces/message';
+import { IUser } from '../../interfaces/user';
 import { RootState } from '../types';
 
 export const getUser = (state: RootState): IUser | null => state.user.data;

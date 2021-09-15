@@ -3,7 +3,7 @@ import React from 'react';
 import { List, ListItem } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
-import { IMessage } from '../../model/message.interface';
+import { IMessage } from '../../interfaces/message';
 import Message from '../../views/Messages/components/Message';
 import { MessageShape } from '../../views/Messages/shapes';
 

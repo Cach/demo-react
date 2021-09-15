@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 
 import CharacterCounter from '../../../../common/CharacterCounter';
 import FormButtons from '../../../../common/FormButtons';
-import { IMessageForm } from '../../../../model/message.interface';
+import { IMessageForm } from '../../../../interfaces/message';
 import { MESSAGE_LIMIT, ValidationSchema } from './validation';
 
 interface IProps {
@@ -55,7 +55,7 @@ const MessageForm: React.FC<IProps> = React.memo(({ isSending, onSubmit, onCance
           onChange={handleMessageChange}
         />
 
-        <CharacterCounter value={values.message} max={MESSAGE_LIMIT} />
+        <CharacterCounter currentLength={values.message.length} maxLength={MESSAGE_LIMIT} />
       </FormControl>
 
       <FormButtons>

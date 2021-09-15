@@ -4,19 +4,19 @@ import { Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 interface IProps {
-  value: string;
-  max: number;
+  currentLength: number;
+  maxLength: number;
 }
 
-const CharacterCounter: React.FC<IProps> = React.memo(({ value, max }) => (
+const CharacterCounter: React.FC<IProps> = React.memo(({ currentLength, maxLength }) => (
   <Typography variant="caption" display="block" gutterBottom align="right">
-    {value.length}/{max}
+    {currentLength}/{maxLength}
   </Typography>
 ));
 
 CharacterCounter.propTypes = {
-  value: PropTypes.string.isRequired,
-  max: PropTypes.number.isRequired,
+  currentLength: PropTypes.number.isRequired,
+  maxLength: PropTypes.number.isRequired,
 };
 
 export default CharacterCounter;

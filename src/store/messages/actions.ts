@@ -4,8 +4,8 @@ import { ActionCreator, createAction } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
 import { addMessage, getMessages } from '../../api/messages';
-import { IMessage, IMessageForm } from '../../model/message.interface';
-import { timeout } from '../../utils/timeout';
+import { IMessage, IMessageForm } from '../../interfaces/message';
+import { delay } from '../../utils/delay';
 import { RootState, ThunkResult } from '../types';
 import { IMessagesFiltersState, MessagesStateTypes } from './types';
 
@@ -55,7 +55,7 @@ export const fetchMessages: ActionCreator<ThunkResult<void>> =
     dispatch(messagesRequest());
 
     try {
-      await timeout(1000);
+      await delay(1000);
 
       const messages = await getMessages();
 
@@ -72,7 +72,7 @@ export const sendFormRequest: ActionCreator<ThunkResult<void>> =
   (data: IMessageForm) => async (dispatch: Dispatch<RootState>) => {
     dispatch(messageFormRequest());
 
-    await timeout(1000);
+    await delay(1000);
 
     try {
       const message: IMessage = await addMessage(data);

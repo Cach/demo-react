@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import { IUser } from '../../model/user.interface';
+import { IUser } from '../../interfaces/user';
 import { getUser, getUserError, getUserLoading } from '../../store/user/selectors';
 
 export const useViewedUser = (): [

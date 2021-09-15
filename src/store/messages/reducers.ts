@@ -1,6 +1,6 @@
 import { createReducer, PayloadAction } from '@reduxjs/toolkit';
 
-import { IMessage } from '../../model/message.interface';
+import { IMessage } from '../../interfaces/message';
 import {
   messageAdd,
   messageFormClose,

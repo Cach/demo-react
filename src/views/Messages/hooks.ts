@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import { IMessage } from '../../model/message.interface';
+import { IMessage } from '../../interfaces/message';
 import { getMessages, getMessagesLoading } from '../../store/messages/selectors';
 
 export const useMessages = (): [messages: IMessage[], isLoading: boolean] => {
